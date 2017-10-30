@@ -15,25 +15,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView( R.layout.activity_main );
     }
 
-    public void onStart( ) {
+    public void onStart( ) { //called when app is started
         super.onStart( );
         updateView( );
     }
 
-    public void updateView( ) {
+    public void updateView( ) { //gets all the data from the mortage app to display on the main screen contents
+                                //on first run through the app it will get the default values stored in mortage class
         TextView amountTV = ( TextView ) findViewById( R.id.amount );
         amountTV.setText( mortgage.getFormattedAmount( ) );
+
         TextView yearsTV = ( TextView ) findViewById( R.id.years );
         yearsTV.setText( "" + mortgage.getYears( ) );
+
         TextView rateTV = ( TextView ) findViewById( R.id.rate );
         rateTV.setText( 100 * mortgage.getRate( ) + "%" );
+
         TextView monthlyTV = ( TextView ) findViewById( R.id.payment );
         monthlyTV.setText( mortgage.formattedMonthlyPayment( ) );
+
         TextView totalTV = ( TextView ) findViewById( R.id.total );
         totalTV.setText( mortgage.formattedTotalPayment( ) );
     }
 
-    public void modifyData( View v ) {
+    public void modifyData( View v ) { //button to be pressed to lead to next activity to change amounts
         Intent myIntent = new Intent( this, DataActivity.class );
         this.startActivity( myIntent );
         overridePendingTransition( R.anim.slide_from_left, 0 );
